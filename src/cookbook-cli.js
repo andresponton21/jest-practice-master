@@ -9,8 +9,8 @@ class CookbookCli {
     switch (command) {
       case 'list': return this.list();
       case 'add': return this.add(...args);
-      case 'get': return this.get();
-      case 'remove': return this.remove();
+      case 'get': return this.get(...args);
+      case 'remove': return this.remove(...args);
       default: return `Whoops, the following command is unsupported: ${command}.`;
     }
   }
@@ -32,6 +32,19 @@ class CookbookCli {
     this.cookbook.removeRecipe(name);
     return `Successfully removed the following recipe: ${name}`;
   }
+  
 }
 
 module.exports = { CookbookCli };
+
+const myCookbook = new Cookbook
+const myCookCli = new CookbookCli(myCookbook)
+console.log(myCookCli)
+console.log(myCookCli.run('add', 'cake', ['flour ', 'sugar', 'eggs']))
+console.log(myCookCli.run('list'))
+console.log(myCookCli.run('get', 'cake'))
+console.log(myCookCli)
+
+console.log(myCookCli.run('remove', 'cake'))
+
+
